@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import styled from '@emotion/styled'
+import axios from 'axios'
+import Error from './Error'
 import useCoin from './../hooks/useCoin'
 import useCryptocurrency from './../hooks/useCryptocurrency'
-import axios from 'axios'
 
 const Button = styled.input`
   margin-top: 20px;
@@ -71,7 +72,7 @@ const Form = () => {
 
   return (
     <form onSubmit={quoteCurrency}>
-      {error ? 'Errrorrrr' : null}
+      {error ? <Error message="Todos los campos son obligatorios" /> : null}
       <SelectCoin />
       <SelectCryptocurrency />
       <Button type="submit" value="calculate" />
