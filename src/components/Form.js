@@ -24,6 +24,7 @@ const Button = styled.input`
 const Form = () => {
   // state: cryptocurrency listing
   const [cryptoList, saveCrypto] = useState([])
+  const [error, saveError] = useState(false)
 
   const COINS = [
     { code: 'USD', name: 'Dolar USA' },
@@ -55,8 +56,22 @@ const Form = () => {
     queryAPI()
   }, [])
 
+  // Submit and validate
+  const quoteCurrency = e => {
+    e.preventDefault()
+
+    if (coin === '' || cryptocurrency === '') {
+      saveError(true)
+      return
+    }
+
+    // Send data to main component
+    saveError(false)
+  }
+
   return (
-    <form>
+    <form onSubmit={quoteCurrency}>
+      {error ? 'Errrorrrr' : null}
       <SelectCoin />
       <SelectCryptocurrency />
       <Button type="submit" value="calculate" />
