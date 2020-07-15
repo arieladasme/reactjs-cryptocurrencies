@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import axios from 'axios'
 import image from './cryptocurrencies.png'
 import Form from './components/Form'
+import Quotation from './components/Quotation'
 
 const Container = styled.div`
   max-width: 900px;
@@ -39,6 +40,7 @@ const Heading = styled.h1`
 function App() {
   const [coin, saveCoin] = useState('')
   const [cryptocurrency, saveCryptocurrency] = useState('')
+  const [result, saveResult] = useState({})
 
   useEffect(() => {
     const quoteCryptocurrency = async () => {
@@ -48,7 +50,7 @@ function App() {
       // Query API
       const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cryptocurrency}&tsyms=${coin}`
       const result = await axios.get(url)
-      console.log(result.data.DISPLAY[cryptocurrency][coin])
+      saveResult(result.data.DISPLAY[cryptocurrency][coin])
     }
     quoteCryptocurrency()
   }, [coin, cryptocurrency])
@@ -61,6 +63,7 @@ function App() {
       <div>
         <Heading>Cotiza Criptomonedas al instante</Heading>
         <Form saveCoin={saveCoin} saveCryptocurrency={saveCryptocurrency} />
+        <Quotation result={result} />
       </div>
     </Container>
   )
