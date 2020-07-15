@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from '@emotion/styled'
 import image from './cryptocurrencies.png'
 import Form from './components/Form'
@@ -36,6 +36,16 @@ const Heading = styled.h1`
 `
 
 function App() {
+  const [coin, saveCoin] = useState('')
+  const [cryptocurrency, saveCryptocurrency] = useState('')
+
+  useEffect(() => {
+    // Avoid execution at startup
+    if (coin === '') return
+
+    console.log('cotitiiti')
+  }, [coin, cryptocurrency])
+
   return (
     <Container>
       <div>
@@ -43,7 +53,7 @@ function App() {
       </div>
       <div>
         <Heading>Cotiza Criptomonedas al instante</Heading>
-        <Form />
+        <Form saveCoin={saveCoin} saveCryptocurrency={saveCryptocurrency} />
       </div>
     </Container>
   )
