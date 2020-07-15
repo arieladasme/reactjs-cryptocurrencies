@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from '@emotion/styled'
+import axios from 'axios'
 import image from './cryptocurrencies.png'
 import Form from './components/Form'
 
@@ -40,10 +41,16 @@ function App() {
   const [cryptocurrency, saveCryptocurrency] = useState('')
 
   useEffect(() => {
-    // Avoid execution at startup
-    if (coin === '') return
+    const quoteCryptocurrency = async () => {
+      // Avoid execution at startup
+      if (coin === '') return
 
-    console.log('cotitiiti')
+      // Query API
+      const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cryptocurrency}&tsyms=${coin}`
+      const result = await axios.get(url)
+      console.log(result.data.DISPLAY[cryptocurrency][coin])
+    }
+    quoteCryptocurrency()
   }, [coin, cryptocurrency])
 
   return (
