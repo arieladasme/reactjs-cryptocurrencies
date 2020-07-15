@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import PropTypes from 'prop-types'
 
 const DivResult = styled.div`
   color: #ffffff;
@@ -42,6 +43,10 @@ const Quotation = ({ result }) => {
       </Info>
     </DivResult>
   )
+}
+
+Quotation.propTypes = {
+  saveCoin: PropTypes.object.isRequired,
 }
 
 export default Quotation

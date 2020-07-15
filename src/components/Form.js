@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from '@emotion/styled'
+import PropTypes from 'prop-types'
 import axios from 'axios'
 import Error from './Error'
 import useCoin from './../hooks/useCoin'
@@ -80,6 +81,11 @@ const Form = ({ saveCoin, saveCryptocurrency }) => {
       <Button type="submit" value="calculate" />
     </form>
   )
+}
+
+Form.propTypes = {
+  saveCoin: PropTypes.string.isRequired,
+  saveCryptocurrency: PropTypes.string.isRequired,
 }
 
 export default Form
