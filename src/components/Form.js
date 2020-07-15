@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import useCoin from './../hooks/useCoin'
 
 const Button = styled.input`
   margin-top: 20px;
@@ -19,8 +20,20 @@ const Button = styled.input`
 `
 
 const Form = () => {
+  const COINS = [
+    { code: 'USD', name: 'Dolar USA' },
+    { code: 'MXN', name: 'Peso Mexicano' },
+    { code: 'EUR', name: 'Euro' },
+    { code: 'GBP', name: 'Libra Esterlina' },
+    { code: 'CLP', name: 'Peso Chileno' },
+  ]
+
+  // UseCoin (Custom Hook)
+  const [coin, SelectCoin] = useCoin('Selecciona tu moneda', '', COINS)
+
   return (
     <form>
+      <SelectCoin />
       <Button type="submit" value="calculate" />
     </form>
   )
